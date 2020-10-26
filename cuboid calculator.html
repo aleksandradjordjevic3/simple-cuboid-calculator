@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cuboid Calculator</title>
+	<meta charset="utf-8">
+	<style>
+		
+		body {
+			   font-family: Arial, sans-serif; 
+			   text-align: center;
+			}
+
+		input {
+			    margin-top: 10px; 
+			    margin-bottom: 10px;
+			    height: 30px;
+	    }
+
+		button {
+
+			margin-top: 10px;
+			margin-bottom: 10px;
+			height: 30px;
+			width: 130px;
+			background-color: #778899;
+
+		}
+
+		button:hover {
+			            background-color: #fbf0f0;
+
+		}
+
+		#dimensions {
+			           background-color: #F59B9B;
+		               color: #FFFFFF;
+		            
+		}
+
+        #dimensions, #result {  
+         	                    width: 500px;
+		                        margin: auto;
+		                        border: 1px solid #000000;
+		                        border-radius: 10px; 
+		                    }
+
+		#result {   
+			        background-color: #F1C1BB;
+		            height: 130px;
+		        }
+
+	    #area { 
+                font-size: 2em;
+               
+            }
+
+	</style>
+
+</head>
+
+<body>
+    <h1> Cuboid Calculator </h1>
+	<div id="dimensions">
+		<p> <b>Enter dimensions of your cuboid in centimeters to calculate surface area. Enter number of decimal places to set 
+		 precision of the calculator.</b> </p>
+		<label>Length:
+		    <input type="number" id="length">
+	    </label>
+	    <br>
+	    <label>Height: 
+		   <input type="number" id="height">
+	    </label>
+	    <br>
+	    <label>Width:
+		<input type="number" id="width">
+		  
+	    </label>
+	    <br>
+	    <label>Precision:
+		   <input type="number" id="decimals" placeholder="(decimal places)">
+	    </label>
+	    
+	</div>
+
+	<button id="area-button" type="button">Calculate area</button>
+
+	<div id="result">
+	   <p id="area"></p>
+    </div>
+
+	<button id="clear" type="button">Clear all inputs</button>
+	
+	<script type="text/javascript">
+		
+		
+		function calculateArea(l,h,w){
+
+			var d = document.getElementById("decimals").value;
+
+		    if (l <= 0 || w <= 0 || h <= 0 || d<0){
+
+			    document.getElementById("area").innerHTML = "Check your input. All values must be positive numbers.";
+			}
+
+		   
+            else  {
+   
+                var area =  2*(l*w+w*h+h*l);
+
+                area = area.toFixed(d);
+
+                document.getElementById("area").innerHTML = "Result: "  + area + " cm<sup>2</sup>";
+               
+            }
+   
+	    }
+   
+        function clearInputs(){
+ 
+            document.getElementById("length").value = null;
+		    document.getElementById("height").value = null;
+		    document.getElementById("width").value = null;
+		    document.getElementById("decimals").value = null;
+
+            document.getElementById("area").innerHTML = "";
+        }  
+
+
+		document.getElementById("area-button").addEventListener("click", function(){calculateArea(document.getElementById("length").value, document.getElementById("height").value,document.getElementById("width").value);});
+
+		document.getElementById("clear").addEventListener("click", clearInputs);
+
+	</script>
+
+</body>
+</html>
